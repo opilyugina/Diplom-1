@@ -1,5 +1,6 @@
 package praktikum;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,10 +11,16 @@ import static org.junit.Assert.*;
 public class BunTest {
     private final String name;
     private final float price;
+    private Bun bun;
 
     public BunTest(String name, float price) {
         this.name = name;
         this.price = price;
+    }
+
+    @Before
+    public void setUp() {
+        bun = new Bun(name, price);
     }
 
     @Parameterized.Parameters(name = "Bun: {0}, Price: {1}")
@@ -25,14 +32,12 @@ public class BunTest {
     }
 
     @Test
-    public void bunNameIsReturnedCorrectly() {
-        Bun bun = new Bun(name, price);
+    public void bunNameIsReturnedCorrectlyTest() {
         assertEquals(name, bun.getName());
     }
 
     @Test
-    public void bunPriceIsReturnedCorrectly() {
-        Bun bun = new Bun(name, price);
+    public void bunPriceIsReturnedCorrectlyTest() {
         assertEquals(price, bun.getPrice(), 0.01);
     }
 }
